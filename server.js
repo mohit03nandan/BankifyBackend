@@ -1,5 +1,9 @@
 const express = require('express')
 const connect = require('./config/db')
+const rootRouter = require('./routes/index')
+
+
+
 const app = express()
 const cors = require('cors');
 
@@ -10,6 +14,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
+
+
+
+app.use("/api/v1", rootRouter);
 
 app.get("/api/health" ,(req,res) =>{
     res.send(`backend server is active status: active & time:${ new Date()}`)
